@@ -1,0 +1,15 @@
+# Jekyll configuration
+
+name: CS1010
+organization: GWU
+class_name: Computer Science Orientation
+description: This is the webpage where all the suporiting documents and tutorials for the class are
+
+baseurl:
+
+permalink: /:year/:month/:title
+
+highlighter: rouge
+markdown: kramdown
+
+exclude: ['README.md', 'LICENSE']

@@ -1,0 +1,56 @@
+---
+layout: default
+---
+
+<h1>CSCI 1010: Term Project Description</h1>
+	<h2>Robot Maze Navigation</h2>
+	<p>This project will involve working in your team to build an autonomous robot that can navigate a maze and "learns" the maze to find the fastest way to go back to the starting point.</p>
+	<p>The objectives of this project are:</p>
+	<ul>
+		<li>Learn to work on a larger assignment in teams</li>
+		<li>Design and build a fully autonomous robot, working with tangible obstacles</li>
+		<li>Analyze and develop a solution for a large problem</li>
+	</ul>
+					
+	<h3>The Maze Navigation Problem</h3>
+	<p>The problem to be solved is a maze navigation problem - you will be given a maze with a starting cell and a goal cell. Your job is to come up with a strategy and implement the corresponding algorithm so that your robot will go from the starting cell to the goal cell, acknowledge that it reached the goal cell with some sort of action, and then make its way back to the starting cell without making a wrong decision.</p>
+	<p>You should think first of a design and solve the problem on paper. Then work on the implementation, testing, and optimization. Consider start with implementing navigation from the start to the goal. Then refine your solution so that the robot can find its way back to the starting point. Ideally, the robot should return to the starting point without making any wrong turn on the maze. Finally, you can think of optimizing your solution so that it will return to the starting line in the fastest time.</p>
+	<h3>Specification of the Maze</h3>
+	<p>Use the following specifications for the maze. Make sure your robot is an appropriate size for navigating through the maze.</p>
+	<ul>
+		<li>The maze can be described as a 5 x 4 grid of cells where each cell is 11.5 inches x 11.5 inches.</li>
+		<li>There are 3 types of cells:</li>
+		<ul>
+			<li>The floor cells contain a black line going through the center of the cell leading to the next cell.</li>
+			<li>The starting cell will be empty.</li>
+			<li>The goal cell is covered with aluminum foil.</li>
+			<li>The intersections are marked with a blue color tape.</li>
+		</ul>
+		<li>Your robot will begin in the starting cell.</li>
+		<li>Once your robot has reached the goal cell, it should acknowledge that it has reached the endpoint by performing some action (beeping, making a specific move, print something to the screen, ect.). Then the timer will start to record how long it takes to return to the start cell.</li>
+		<li>There is no limit to the number and place of T-junctions and corners. Also, there may be dead-ends.</li>
+	</ul>
+	<h3>Practice Maze vs Final Maze</h3>
+	<p>The practice maze will be available during every lab and will be placed in a common room that may be used during the week. However, the maze that will be used for the final presentation will be a totally different configuration of the walls, but will still follow the above specifications. You will not see this final maze until the final presentation day.</p>
+	<p>You may not change any of your code on the final presentation day. Meaning that your solution to the project cannot be a hardcoded list of directions for your robot. Your algorithm must be able to work on any maze that abides by the above specifications.</p>
+	<h3>Using Sensors</h3>
+	<p>Your kit contains a number of types of sensors. You have to figure out how many sensors and what types you will need to solve the problem - note that there are many ways to solve it, so don't worry about searching for the "one" solution.</p>
+	<h3>Final Presentation Requirements</h3>
+	<p>The final presentation is scheduled during the last class. For your final presentation, each team is required to:</p>
+	<ul>
+		<li>Give a presentation describing how you solved the problem and lessons learned. Each team member must speak during the presentation. Provided example template: <a href="./resources/project.pptx">Project Presentation - Powerpoint Template</a></li>
+		<li>Demo your robot navigating from the start to the finish line and back to the start.</li>
+		<li>Submit all your code and design documents via Github on a different branch called release</li>
+	</ul>
+	<p>This is not a trivial assignment! You are strongly encouraged to begin working on this project as soon as you finish lab this week.</p>
+	<h3>Your Next Steps:</h3>
+	<ul>
+		<li>Setup meeting times for your team</li>
+		<li>Read the project description carefully and analyze the problem</li>
+		<li>Design a solution strategy</li>
+		<li>Implement your design</li>
+		<li>Test your code, make changes, and then test your code some more</li>
+		<li>Test your solution on the practice maze</li>
+		<li>Create your presentation and designate who will be speaking for which parts</li>
+		<li>Be ready for the final presentation!</li>
+	</ul>
