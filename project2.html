@@ -49,9 +49,8 @@
 
 
 							<h3>Implementation:</h3>
-							<p>Key Method: Impliment the first picture with laplacian pyramid, while the second one with Gaussian pyramid
+							<p><b>Big idea:</b> Filter the first picture with laplacian pyramid and the second one with Gaussian pyramid <br>
 
-							Principle:
 							Laplacian pyramids are calculated based on Gaussians. When we compress a picture by half, the picture loses half of its information. As we continue shrinking it, we get a pyramid of pictures with less information. When we amplify the pictures to their original size, the total information is constant; thus the image is blurred. Based on Gaussian pyramids, if we subtract the blurred image from the original picture, we will get lost information. The resulting image shows the high frequency parts of the image: lines, edges, etc. This process of substractions makes up the Laplacian pyramid.
 						</p>
 
@@ -59,7 +58,7 @@
 							<h3>Final Results</h3>
 							<table style="width:100%">
 							  <tr>
-							  	<td><h4>final image</h4><img src= "images/cv-18/p2/n4-dog.png" alt="hybrid image of wolf and person"></img></td>
+							  	<td><h4>final image</h4><img src= "images/cv-18/p2/dog-n4.png" alt="hybrid image of wolf and person"></img></td>
 							    <td><h4>original 1</h4><img src= "images/cv-18/p2/n4.jpg" alt="headshot of woman "></img></td> 
 							    <td><h4>original 2</h4><img src= "images/cv-18/p2/dog.jpg" alt="red image"></img></td>
 	
@@ -67,6 +66,35 @@
 							</table>
 
 							<h3>More results:</h3>
+			
+							<h4>Idea: play with expressions</h4>
+							<table style="width:100%">
+							  <tr>
+							  	<td><h4>final image</h4><img src= "images/cv-18/p2/p2-p22.png" alt="hybrid image of wolf and person"></img></td>
+							    <td><h4>original image 1</h4><img src= "images/cv-18/p2/p2.jpg" alt="headshot of woman "  style="width:70%" ></img></td> 
+							    <td><h4>original image 2</h4><img src= "images/cv-18/p2/p22.jpg" alt="red image"></img></td>
+							  </tr>
+							  <tr>
+							    <td><img src= "images/cv-18/p2/p12-p1.png" alt="hybrid image of wolf and person"></img></td>
+							    <td><img src= "images/cv-18/p2/p12.jpg" alt="headshot of woman "></img></td> 
+							    <td><img src= "images/cv-18/p2/p1.jpg" alt="red image"></img></td>
+							  </tr>
+							</table>
+
+							<h4>Idea: Animal/human hybrids</h4>
+							<table style="width:100%">
+							  <tr>
+							  	<td><h4>final image</h4><img src= "images/cv-18/p2/h1-dog.png" alt="hybrid image of wolf and person"></img></td>
+							    <td><h4>original image 1</h4><img src= "images/cv-18/p2/p2.jpg" alt="headshot of woman "  style="width:70%" ></img></td> 
+							    <td><h4>original image 2</h4><img src= "images/cv-18/p2/p22.jpg" alt="red image"></img></td>
+							  </tr>
+							  <tr>
+							    <td><img src= "images/cv-18/p2/p12-p1.png" alt="hybrid image of wolf and person"></img></td>
+							    <td><img src= "images/cv-18/p2/p12.jpg" alt="headshot of woman "></img></td> 
+							    <td><img src= "images/cv-18/p2/p1.jpg" alt="red image"></img></td>
+							  </tr>
+							</table>
+
 							<h3>Initial (bad) Results</h3>
 							<table style="width:100%">
 							  <tr>
@@ -78,6 +106,7 @@
 							</table>
 
 							<p> I really needed to crop amd hand-align the images better. So I tried harder.</p>
+
 
 			    </section>
 			</div>
