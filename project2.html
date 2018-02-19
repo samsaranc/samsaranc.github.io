@@ -1,0 +1,114 @@
+<!DOCTYPE HTML>
+<!--
+	Strata by HTML5 UP
+	html5up.net | @ajlkn
+	Free for personal and commercial use under the CCA 3.0 license (html5up.net/license)
+-->
+<html>
+	<head>
+		<title>Samsara Counts</title>
+		<meta charset="utf-8" />
+		<meta name="viewport" content="width=device-width, initial-scale=1" />
+		<!--[if lte IE 8]><script src="assets/js/ie/html5shiv.js"></script><![endif]-->
+		<link rel="stylesheet" href="assets/css/main.css" />
+		<!--[if lte IE 8]><link rel="stylesheet" href="assets/css/ie8.css" /><![endif]-->
+	</head>
+	<body id="top">
+<!-- Header -->
+			<header id="header">
+				<div class="inner">
+					<a href="http://samsaranc.github.io" class="image avatar"><img src="images/avatar.jpg" alt="" /></a>
+					<h1><strong></a><a href="http://samsaranc.github.io">Samsara Counts</a></strong></br>
+					<a href="http://cs.seas.gwu.edu">Computer Science</a> + <a href="http://math.columbian.gwu.edu">Mathematics</a><br/> student and researcher
+					attending <a href="http://www.gwu.edu">the George Washington University</a>. Previously at UMD's <a href="http://www.cs.umd.edu/projects/reucaar/">REU CAAR</a>
+				    <h3><a href="pubs.html">Publications</a></h3>
+					<h3><a href="portfolio.html">Portfolio</a></h3>
+                    <h3><a href="cv_index.html">Computer Vision</a></h3>
+					<h3><a href="http://undecidabi1ity.tumblr.com/">Academic Blog</a></h3>
+				</div>
+			</header>
+
+		<!-- Main -->
+			<div id="main">
+				<section>
+							<h1><a href="http://robertpless.com/classes/ComputerVision/project2/description.html">Computer Vision Project 2</a>: Hybrid Images</h1>
+							<p>
+							<h3>Goal:</h3>
+							Create <a href="http://cvcl.mit.edu/hybridimage/">hybrid images</a> using the approach described in the SIGGRAPH 2006 <a href="http://cvcl.mit.edu/publications/OlivaTorralb_Hybrid_Siggraph06.pdf">paper</a> by Oliva, Torralba, and Schyns. Hybrid images are static images blended from two separate images that change in interpretation as a function of the viewing distance. The basic idea is that high frequency tends to dominate perception when it is available; however, at a distance, only the low frequency part of the signal can be seen. By blending the high frequency portion of one image with the low-frequency portion of another, you get a hybrid image that leads to different interpretations at different distances.</p>
+
+							<h3>Dataset:</h3>
+							<p>To "cheat" somewhat (as encouraged in class) to produce the highest-quality hybrid images, instead of searching for naturalistic pictures of people and animals from the internet, I searched for specific types of images. My idea was to match the silhouettes of the images' subject as much as possible, to create the best, <a href="https://en.wikipedia.org/wiki/Animorphs">animorph</a>-style hybrid image.<br>
+
+							My first category of image was professional headshots of people. Headshots are relatively standardized, usually having a single color background with a centralized human subject. My sources included several portfolios of professional photographers and a few photos taken by the artist <a href="http://ji-yun.net/photos/portraits/">Ji-Yun</a>.
+							<br><br>
+
+							My second category of image was portraits of animals. Similarly, for the 
+							My sources included the work of several artists and photographers whose projects captured portraits of animals. One was the <a href= "http://www.robbahou.com/animalsoul/">Animal Soul Project by Robert Bahou.</a><br><br>
+
+							My third category of images consisted images I deliberately selected to be challenging to make a pretty hybrid image of---ones where the silhouettes don't line up at all. </p>
+
+
+							<h3>Implementation:</h3>
+							<p>Key Method: Impliment the first picture with laplacian pyramid, while the second one with Gaussian pyramid
+
+							Principle:
+							Laplacian pyramids are calculated based on Gaussians. When we compress a picture by half, the picture loses half of its information. As we continue shrinking it, we get a pyramid of pictures with less information. When we amplify the pictures to their original size, the total information is constant; thus the image is blurred. Based on Gaussian pyramids, if we subtract the blurred image from the original picture, we will get lost information. The resulting image shows the high frequency parts of the image: lines, edges, etc. This process of substractions makes up the Laplacian pyramid.
+						</p>
+
+
+							<h3>Initial (bad) Results</h3>
+							<table style="width:100%">
+							  <tr>
+							  	<td><h4>final image</h4><img src= "images/cv-18/p2/h3-wolf.png" alt="hybrid image of wolf and person"></img></td>
+							    <td><h4>original 1</h4><img src= "images/cv-18/p2/h3.jpg" alt="headshot of woman "></img></td> 
+							    <td><h4>original 2</h4><img src= "images/cv-18/p2/wolf.jpg" alt="red image"></img></td>
+	
+							  </tr>
+							</table>
+
+							<h3>Analysis:</h3>
+							<p> I really needed to crop better. So I tried harder.</p>
+
+							<h3>More results:</h3>
+							<h3>Initial (bad) Results</h3>
+							<table style="width:100%">
+							  <tr>
+							  	<td><h4>final image</h4><img src= "images/cv-18/p2/h3-wolf.png" alt="hybrid image of wolf and person"></img></td>
+							    <td><h4>original image 1</h4><img src= "images/cv-18/p2/h3.jpg" alt="headshot of woman "></img></td> 
+							    <td><h4>original image 2</h4><img src= "images/cv-18/p2/wolf.jpg" alt="red image"></img></td>
+	
+							  </tr>
+							</table>
+
+			    </section>
+			</div>
+<!-- Footer -->
+			<footer id="footer">
+				<div class="inner">
+					<ul class="icons">
+						<li><a href="https://github.com/samsaranc" class="icon fa-github"><span class="label">Github</span></a></li>
+						<li> <a href="https://limeconnect-csm.symplicity.com/profiles/samsara.counts2">Lime Network</a></li>
+						<li><a href="https://www.linkedin.com/in/samsaranc/" class="icon fa-linkedin"><span class="label">LinkedIn</span></a></li>
+						<li><a href="https://twitter.com/samsaranc" class="icon fa-twitter"><span class="label">Twitter</span></a></li>
+						<li><a href="mailto:samsaranc@gmail.com" class="icon fa-envelope-o"><span class="label">Email</span></a></li>
+					</ul>
+					<ul class="copyright">
+						<li>Last updated: September 2017</li>
+						<li>Design: <a href="http://html5up.net">HTML5 UP</a></li>
+						<li>Background: <a href="https://www.lansbergen.net/wp/solargraphy/">Jan Koeman Kloetinge</a> </li>
+					</ul>
+
+				</div>
+			</footer>
+
+
+		<!-- Scripts -->
+			<script src="assets/js/jquery.min.js"></script>
+			<script src="assets/js/jquery.poptrox.min.js"></script>
+			<script src="assets/js/skel.min.js"></script>
+			<script src="assets/js/util.js"></script>
+			<!--[if lte IE 8]><script src="assets/js/ie/respond.min.js"></script><![endif]-->
+			<script src="assets/js/main.js"></script>
+
+	</body>
+</html>
