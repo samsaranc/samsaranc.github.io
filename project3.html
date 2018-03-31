@@ -35,30 +35,40 @@
 							<p>
 							<h3>Goal:</h3>
 							Write a program that takes as input a rectified stereo pair, and creates a depth map of the scene, (where each pixel is color coded by your estimate of the depth). 
+							</p>
 
-							Compute the depth map for many different window sizes (ie, 3x3, 5x5, 9x9, 15x15, 21x21, 31x31), and try different heuristic rules to combine the resulting depth maps into one final answer.
+							<p>
+							<strong>Extension</strong><br>
 							One challenge is images that have large blank regions; develop some other heuristics or rules to "guess" what the best correspondence is for these large regions.
 							</p>
 
 							<h3>Intro</h3>
+							<p>
 							In stereo matching, we find correspondences between input images. Generally, we determine correspondence between two points by inspecting the pixel neighborhood N around both points. I then select the pairing that has the lowest sum of absolute differences as a corresponding point pair. In practice, a matching block is located for each pixel in an image. The relative difference in the location of the points on the image planes is the disparity of that point. Due to the assumption of being constrained into a 1-dimensional search space, these disparities can be represented as a 2D disparity map which is the same size as the image. 
+							</p>
+
 
 							<h4>Assumptions</h4>
-							Constrain problem into 1-dimensional search space means I can model disparities as a 2D disparity map
+							Constraining the problem into a 1-dimensional search space means I can model disparities as a 2D disparity map. 
 							I assume that disparity of a point is closely related to the depth of the point.</br>
 
 							<h3>Dataset:</h3>
-							<p>I found pairs of rectified stereo images (that were not evaluation sets) <a href="http://vision.deis.unibo.it/~smatt/stereo_smp.html">here</a>, from the "Indoor", "Outdoor", and "Office" datasets. The datasets were created by <a href="http://vision.deis.unibo.it/~smatt/Site/Home.html">Dr. Stefano Mattoccia</a> of the University of Bologna.
+							<p>I found pairs of rectified stereo images (that were not evaluation sets) <a href="http://vision.deis.unibo.it/~smatt/stereo_smp.html">here</a>, from the "Indoor", "Outdoor", and "Office" datasets. The datasets were created by <a href="http://vision.deis.unibo.it/~smatt/Site/Home.html">Dr. Stefano Mattoccia</a> of the University of Bologna. 
 
-							<h4>Sample Images</h4>
+
+
+							<h4>Sample Results (Basic Implementation</h4>
 							<table style="width:100%">
 							  <tr>
-							  	<td><h4>left image</h4><img src= "images/cv-18/p3/v3002-L.bmp" alt="left stereo image" style="width:400px"></img></td>
-							    <td><h4>right image</h4><img src= "images/cv-18/p3/right0002.bmp" alt="right stereo image" style="width:400px"></img></td> 
+							  	<td><h4>stereo depth</h4><img src= "images/cv-18/p3/depth_02.jpg" alt="depth stereo image" style="width:300px"></img></td> 
+							  	<td><h4>left image</h4><img src= "images/cv-18/p3/v3002-L.bmp" alt="left stereo image" style="width:300px"></img></td>
+							    <td><h4>right image</h4><img src= "images/cv-18/p3/right0002.bmp" alt="right stereo image" style="width:300px"></img></td>
+
 							  </tr>
 							  <tr>
-							  	<td><h4>left image</h4><img src= "images/cv-18/p3/v3083-L.bmp" alt="left stereo image" style="width:400px"></img></td>
-							    <td><h4>right image</h4><img src= "images/cv-18/p3/right0083.bmp" alt="right stereo image" style="width:400px"></img></td> 
+							  	<td><h4>stereo depth</h4><img src= "images/cv-18/p3/depth_34.jpg" alt="depth stereo image" style="width:300px"></img></td> 
+							  	<td><h4>left image</h4><img src= "images/cv-18/p3/v3034-L.bmp" alt="left stereo image" style="width:300px"></img></td>
+							    <td><h4>right image</h4><img src= "images/cv-18/p3/right0034.bmp" alt="right stereo image" style="width:300px"></img></td> 
 							  </tr>
 							</table>
 
@@ -67,8 +77,27 @@
 
 							<p><b>Big idea:</b> find pixel-by-pixel correspondence from sum of absolute differences <br>
 
+							<h4>Basic Algorithm</h4>
+							<ul>
+ 							<li>Calculate an appropriate window size based on dimensions of image <i>I</i><br> 
+ 							<li>interate over each pixel <i>p</i> in the left image: 
+ 							<li>make each <i>p</i> the center of the L window and slide R window in the corresponding position of the right image. <br>
+ 							<li>find the window positions with the minimum error with respect to the L and R windows; those are the corresponding points for <i>p</i>.<br>
+ 							<li>calculate the disparity between the 2 points
+ 							<li>depth = dist_from_camera * camera_focus_length / disparity
+ 							</ul>
+
+ 							<h4>Finding corresponding points:</h4>
+							In the basic implementation, I use <a href="https://en.wikipedia.org/wiki/Sum_of_absolute_differences"><strong>sum of absolute differences</strong></a> for my error function, as inspired by this paper: <a href="http://ieeexplore.ieee.org/document/5565062/?reload=true">Sum of Absolute Differences algorithm in stereo correspondence problem for stereo matching in computer vision application</a> by Hamzah et. al.
+
+
+							The <strong>sum of absolute differences</strong> function takes the absolute value of the differences between the lef† and right windows.
+
+							Noticing that pairs of images in the <a href="http://vision.deis.unibo.it/~smatt/stereo_smp.html">Office dataset</a> are very closely alligned, I felt it was only necessary to move my evaluation window across rows (rather than columns).
+							<br>
 
 							<h3>Extension: images with blank regions</h3>
+							<strong>Idea: more close the color of the two pixels are</strong>
 							<!-- For images that have large blank regions, I use global optimization to cope with the blank regions. The idea is to minimize the energy function E = E_match + lambda * E_smooth. E_match is the original SAD error function. E_smooth here I use is: E_smooth = (disparity1-disparity2)^2/(|pixel1-pixel2|+1). It is base on the idea that the more close the color of the two pixels are, the more possible they are in the same depth.
 
 							To optimize this energy function is NP-hard problem. But we could use Dynamic Programming to get a closer solution. Here is the code depth. -->
@@ -79,9 +108,9 @@
 							<h3>Results</h3>
 							<table style="width:100%">
 							  <tr>
-							  	<td><h4>depth map</h4><img src= "images/cv-18/p3/luna_result.jpg" alt="red image" style="width:80px"></img></td>
-							  	<td><h4>left image</h4><img src= "images/cv-18/p3/AS15_10320.Panorama_376x3638c.jpg" alt="lunar left image " style="width:80px"></img></td>
-							    <td><h4>right image</h4><img src= "images/cv-18/p3/AS15_10325.Panorama_376x3638.jpg" alt="lunar right image" style="width:80px"></img></td> 
+							  	<td><h4>depth map</h4><img src= "images/cv-18/p3/" alt="final image" style="width:80px"></img></td>
+							  	<td><h4>left image</h4><img src= "images/cv-18/p3/" alt=" left image " style="width:80px"></img></td>
+							    <td><h4>right image</h4><img src= "images/cv-18/p3/" alt="lunar right image" style="width:80px"></img></td> 
 							  </tr>
 							</table>
 			    </section>
