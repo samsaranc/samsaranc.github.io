@@ -49,8 +49,9 @@
 
 
 							<h4>Assumptions</h4>
-							Constraining the problem into a 1-dimensional search space means I can model disparities as a 2D disparity map. 
+							Constraining the problem into a 1-dimensional search space means I can model disparities as a 2D disparity map. <br>
 							I assume that disparity of a point is closely related to the depth of the point.</br>
+							I assume that the intensities of corresponding points in the images are identical. (note this is true only when the scene is <a href="https://en.wikipedia.org/wiki/Lambertian_reflectance">Lambertian</a>). <br>
 
 							<h3>Dataset:</h3>
 							<p>I found pairs of rectified stereo images (that were not evaluation sets) <a href="http://vision.deis.unibo.it/~smatt/stereo_smp.html">here</a>, from the "Indoor", "Outdoor", and "Office" datasets. The datasets were created by <a href="http://vision.deis.unibo.it/~smatt/Site/Home.html">Dr. Stefano Mattoccia</a> of the University of Bologna. 
@@ -98,7 +99,12 @@
 
 							<p>
 							<h3>Extension: images with blank regions</h3>
-							<strong>Idea: the closer the pixel intesitiesar between the two, the more likely they are to be of similar depth. </strong>
+							<strong>Idea: the closer the pixel intesities are between the two, the more likely they are to be of similar depth. 
+								With this insight, and a few other computational tricks, maybe we can improve our error function somehow to handle these blank regions. </strong>
+
+							Inspired by the <a href="http://mccormickml.com/assets/StereoVision/Stereo%20Vision%20-%20Mathworks%20Example%20Article.pdf">Stereo Vision<a> demo and resources available for Matlab, I decided to try my hand at dynamic programming to optimize the error function.
+
+
 							<!-- For images that have large blank regions, I use global optimization to cope with the blank regions. The idea is to minimize the energy function E = E_match + lambda * E_smooth. E_match is the original SAD error function. E_smooth here I use is: E_smooth = (disparity1-disparity2)^2/(|pixel1-pixel2|+1). It is base on the idea that the more close the color of the two pixels are, the more possible they are in the same depth.
 
 							To optimize this energy function is NP-hard problem. But we could use Dynamic Programming to get a closer solution. Here is the code depth. -->
@@ -108,6 +114,11 @@
 
 							<h3>Extension Results</h3>
 							<table style="width:100%">
+								<tr>
+							  	<td><h4>depth map</h4><img src= "images/cv-18/p3/blank_83.jpg" alt="final image" style="width:300px"></img></td>
+							  	<td><h4>left image</h4><img src= "images/cv-18/p3/v3083-L.bmp" alt=" left image " style="width:300px"></img></td>
+							    <td><h4>right image</h4><img src= "images/cv-18/p3/right0083.bmp" alt="lunar right image" style="width:300px"></img></td> 
+							  </tr>
 							  <tr>
 							  	<td><h4>depth map</h4><img src= "images/cv-18/p3/blank_83.jpg" alt="final image" style="width:300px"></img></td>
 							  	<td><h4>left image</h4><img src= "images/cv-18/p3/v3083-L.bmp" alt=" left image " style="width:300px"></img></td>
