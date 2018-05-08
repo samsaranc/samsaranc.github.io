@@ -44,9 +44,20 @@
 
 							I decided to use machine learning to identify pro-ana and pro-eating disorder content, trained on example data from online social media searches. </br> </br>
 
+							<h3>Related work</h3>	
+
+							<ul>
+								<li><a href="">Multimodal Classification of Moderated Online Pro-Eating Disorder Content</a>https://dl.acm.org/citation.cfm?id=3025985</li>
+								<li>Text-based Classification of online Pro-ED content: thyghgapp: <a href="https://dl.acm.org/citation.cfm?id=2819963">Instagram Content Moderation and Lexical Variation in Pro-
+Eating Disorder Communities</a></li>
+								<li>Our research group's <a href="https://cpb-us-e1.wpmucdn.com/blogs.gwu.edu/dist/7/135/files/formidable/9/Research-Days-Abstract-SHORT-y16vpl.pdf">previous abstract</a> for this project </li>
+
+								<li>CNN I used: <a href="https://arxiv.org/abs/1512.03385">Resnet Deep Learning</a> </li>
+							</ul>	
+
 
 <h3>Dataset gathering:</h3>
-							Over the past 8 months, our research group has accumulated a massive, hashtag-labeled dataset. We used python to scrape the images from twitter, tumblr, and flickr. I chose hashtags to get us training data that compares pro-ana content with other content similar in demographics and photographic style. We scraped images from each hashtag-based category: 
+							Over the past 8 months, our research group has accumulated a massive, hashtag-labeled dataset. We used python to scrape the images from twitter, tumblr, and flickr. I chose hashtags to get us training data that compares pro-ana content with other content similar in demographics and photographic style. We scraped images from each hashtag-based category, getting over 124,000 images in total: 
 
 							<ul>
 							<li>#proana</li> 
@@ -70,7 +81,7 @@
 
 							<h3>Classifier Design</h3>
 
-									<p>In designing the classifier, I chose the training data to compare pro-ana content with other content similar in demographics and photographic style, composed of the hashtag-based categories #proana, #selfie, #ootd, and #greek. These were 4 <strong>distinct</strong> classes.</p>
+									<p>In designing the image classifier, I chose the training data to compare pro-ana content with other content similar in demographics and photographic style, composed of the hashtag-based categories #proana, #selfie, #ootd, and #greek. These were 4 <strong>distinct</strong> classes.</p>
 
 
 
@@ -79,6 +90,7 @@
 
 
 							<h3>Implementation:</h3>
+							I used a convolutional neural network for my classifier.
 
 							I used PyTorch and the <a href="https://arxiv.org/abs/1512.03385">Resnet Deep Learning</a> framework pretrained on the <a href="http://www.image-net.org/">ImageNet dataset</a>. I trained the last several layers of the model into the two categories: proana (PA) and not proana (NA).<br>
 
