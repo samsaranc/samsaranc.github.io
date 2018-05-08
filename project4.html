@@ -68,26 +68,23 @@
 
 
 
-							<h3>Original classes</h3>
+							<h3>Classifier Design</h3>
 
-									<p>In the first iteration of our classifier, I chose the training data to compare pro-ana content with other content similar in demographics and photographic style, composed of the hashtag-based categories #proana, #selfie, #ootd, and #greek. These were 4 <strong>distinct</strong> classes.</p>
-
-
+									<p>In designing the classifier, I chose the training data to compare pro-ana content with other content similar in demographics and photographic style, composed of the hashtag-based categories #proana, #selfie, #ootd, and #greek. These were 4 <strong>distinct</strong> classes.</p>
 
 
-							<h3>Classifier Resdesign:</h3>
 
-							For the first iteration, I used PyTorch and the <a href="https://arxiv.org/abs/1512.03385">Resnet Deep Learning</a> framework pretrained on the <a href="http://www.image-net.org/">ImageNet dataset</a>. I trained the last several layers of the model into the two categories: proana (PA) and not proana (NA).</br>
+
+							The hashtags #selfie, #ootd, and #greek made up the non-pro-ana class (NPA). #proana was the proana class (PA). 
 
 
 							<h3>Implementation:</h3>
 
 							I used PyTorch and the <a href="https://arxiv.org/abs/1512.03385">Resnet Deep Learning</a> framework pretrained on the <a href="http://www.image-net.org/">ImageNet dataset</a>. I trained the last several layers of the model into the two categories: proana (PA) and not proana (NA).<br>
 
-						</p>
 
 
-							<h3>Training settings</h3>
+							<h4>Training settings</h4>
 							
 							<ul>
 								<li>Solver: Stochastic Gradient Descent</li>
@@ -111,7 +108,7 @@
 
 							<h3>Training Results</h3>
 							<p> 
-								In the first iteration, I randomly chose 20% of these images as test data and trained the <a href="https://arxiv.org/abs/1512.03385">Resnet</a> neural network to classify the remaining images. On test data this gives 81% classification accuracy—a significant improvement over chance (25%). </br>
+								In the first iteration, I randomly chose 20% of these images as test data and trained the <a href="https://arxiv.org/abs/1512.03385">Resnet</a> neural network to classify the remaining images. On test data this gives 80% classification accuracy—a significant improvement over chance (50%). </br>
 
 								
 								<img src= "acc.jpg" alt="color image"></img>
@@ -136,12 +133,16 @@ Here is a sample of some of the images:
 The total results of the tests and classification of each set of images is here:
 <img src= "images/cv-18/p4/test2.png" alt="color image"></img>
 </p>
+
+<p>Despite our hypothesis that roughly half of the image
+types in the pro-ana test set would be difficult to classify, the
+results are encouraging. However, we do have a problem with
+pro-ana false positives. One potential explanation for this
+could be class overlap and noisiness of the dataset: for
+example, a pro-ana selfie is still a selfie. </p>
+
 <h3>Conclusion</h3>
-These proof of concept results suggest that it is feasible to automatically detect social media sources with triggering material, informing the creation of tools that can assist clinicians and family members to improve health outcomes.</br>
-							I used the classifier to make a web application that assesses how pro-ana a social media
-							user’s content is. The tool, designed for clinicians, allows them to enter a social media username
-							and then gives an analysis of that user’s online presence, classifying its content. The tool also
-							displays a hashtag similarity map showing trending hashtags closely related to #proana.
+These results suggest that it is feasible to automatically detect social media sources with pro-eating disorder material with high accuracy. This could informing the creation of tools that can assist clinicians and family members to improve health outcomes for ED patients.</br>
 
 
 							
