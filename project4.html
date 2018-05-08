@@ -33,124 +33,120 @@
 				<section>
 							<h1><a href="http://robertpless.com/classes/ComputerVision/FinalProject/index.html">Computer Vision Final Project </a>: Recognizing Images with Deep Learning </h1>
 							<p>
-							<h3>Introduction:</h3>					
-								<h3>Sample output</h3>
-								<a href="images/fulls/CVproana.png" class="image fit thumb"><img src="images/fulls/CVproana.png" alt="Computer Vision Proana tumblr dataset featuring images of individuals with Eating Disorders and images that fall under the hashtag #selfie or #ootd" /></a>
+							<h3>Introduction:</h3>				
 							
 							Eating disorders (ED) are pervasive and do not discriminate based on race, religion, gender, or socioeconomic status. Comorbidities include anxiety, depression, substance abuse, self-injurious behaviors, and history of trauma. ED are often a lifelong struggle, with approximately 2/3 of patients never achieving a full and sustained remission.</br>
 							Exposure to media expressing “the thin ideal” can be triggering to individuals with ED as well as those at risk for developing them. Social media is rife with these triggers. Concurrent with the rise of social media, individuals with ED have created communities in which they support one another in the dangerous pursuit of this illness' goal: to be “thin enough.” Websites promoting anorexia (pro-ana) and ED as lifestyle choices valorize acting on ED symptoms. Such sites teach those suffering or at risk from ED how to act on the illness and support them in doing so, putting
 							them at risk for severe health complications.</br>
 
 							The impact of images in this community far exceeds that of other communities surrounding
-							physical and mental health issues. Therefore, it is essential that clinicians and family members be able to identify websites containing images associated with the promotion of ED to prevent exposure to these triggers. This research aims to automatically detect such triggering material, with the ultimate goal of designing parental and clinical controls.</br> 
+							physical and mental health issues. Therefore, it is essential that clinicians and family members be able to identify websites containing images associated with the promotion of ED to prevent exposure to these triggers. My project, part of my ongoing work with Dr. Pless, aims to use deep learning to automatically detect such triggering material, with the ultimate goal of designing parental and clinical controls to classify internet content.</br> 
 
-							We report on a proof of concept, machine learning approach to identify pro-ana content, trained on example data from online social media searches. The training data was chosen to compare pro-ana content with other content similar in demographics and photographic style, composed of the hashtag-based categories #proana, #selfie, #ootd, and #greek.
-							We randomly chose 20% of these images as test data and train the Resnet Deep Learning neural network to classify the remaining images. On test data this gives 81% classification accuracy—a significant improvement over chance (25%). These proof of concept results suggest that it is feasible to automatically detect social media sources with triggering material, informing the creation of tools that can assist clinicians and family members to improve health outcomes.</br>
-							We used the classifier to make a web application that assesses how pro-ana a social media
+							I decided to use machine learning to identify pro-ana and pro-eating disorder content, trained on example data from online social media searches. </br> </br>
+
+
+<h3>Dataset gathering:</h3>
+							Over the past 8 months, our research group has accumulated a massive, hashtag-labeled dataset. We used python to scrape the images from twitter, tumblr, and flickr. I chose hashtags to get us training data that compares pro-ana content with other content similar in demographics and photographic style. We scraped images from each hashtag-based category: 
+
+							<ul>
+							<li>#proana</li> 
+							<li>#selfie</li>
+							<li>#ootd</li>
+							<li>#greek</li>
+						</ul>
+							<h3>Sample Images from each category<h3>
+							<a href="images/fulls/CVproana.png" class="image fit thumb"><img src="images/fulls/CVproana.png" alt="Computer Vision Proana tumblr dataset featuring images of individuals with Eating Disorders and images that fall under the hashtag #selfie or #ootd" /></a>
+
+							<table style="width:100%">
+							  <tr>
+							  	<td><h4>proana</h4><img src= "images/cv-18/p4/pa1.jpg" alt="color image"></img></td>
+							   <!--  <td><h4>Gradient final image</h4><img src= "images/cv-18/p1/c_00106v.jpg" alt="color image"></img></td> -->
+							    <td><h4>not proana</h4><img src= "images/cv-18/p4/.jpg" alt="green image"></img></td> 
+							    
+							  </tr>
+							</table>
+
+
+
+							<h3>Original classes</h3>
+
+									<p>In the first iteration of our classifier, I chose the training data to compare pro-ana content with other content similar in demographics and photographic style, composed of the hashtag-based categories #proana, #selfie, #ootd, and #greek. These were 4 <strong>distinct</strong> classes.</p>
+
+
+
+
+							<h3>Classifier Resdesign:</h3>
+
+							For the first iteration, I used PyTorch and the <a href="https://arxiv.org/abs/1512.03385">Resnet Deep Learning</a> framework pretrained on the <a href="http://www.image-net.org/">ImageNet dataset</a>. I trained the last several layers of the model into the two categories: proana (PA) and not proana (NA).</br>
+
+
+							<h3>Implementation:</h3>
+
+							I used PyTorch and the <a href="https://arxiv.org/abs/1512.03385">Resnet Deep Learning</a> framework pretrained on the <a href="http://www.image-net.org/">ImageNet dataset</a>. I trained the last several layers of the model into the two categories: proana (PA) and not proana (NA).<br>
+
+						</p>
+
+
+							<h3>Training settings</h3>
+							
+							<ul>
+								<li>Solver: Stochastic Gradient Descent</li>
+
+								<li>Initial learning rate 0.1</li>
+
+								<li>learning rate decay factor: 0.1</li>
+
+								<li>Momentum: 0.9</li>
+
+								<li>Decay epoch 16</li>
+
+								<li>Batch size: 175</li>
+
+								<li>Total Epoch:15</li>
+
+								<li>layers:  512</li>
+
+								<li>Hardware: 2 NVIDIA Teslas</li>
+							</ul>
+
+							<h3>Training Results</h3>
+							<p> 
+								In the first iteration, I randomly chose 20% of these images as test data and trained the <a href="https://arxiv.org/abs/1512.03385">Resnet</a> neural network to classify the remaining images. On test data this gives 81% classification accuracy—a significant improvement over chance (25%). </br>
+
+								
+								<img src= "acc.jpg" alt="color image"></img>
+								<img src= "loss.jpg" alt="color image"></img>
+							</p>
+
+							<h3>Stress-testing Results</h3>
+					
+							To assess the robustness of our classifier, I examined its
+performance on images with subjects and demographics
+underrepresented in our training set. With n=2436 photos, I evaluated our dataset for "challenging" non-pro-ana (NPA) and pro-ana (PA) examples.
+
+In the PA set, one site contained images of men; the rest
+were similar to our pro-ana set. For the non-pro-ana NPA set, we
+selected sites that were likely to show underweight people, a
+proliferation of exposed skin, or people of color.
+
+Here is a sample of some of the images:
+
+<img src= "images/cv-18/p4/stress_test.png" alt="color image"></img>
+
+The total results of the tests and classification of each set of images is here:
+<img src= "images/cv-18/p4/test2.png" alt="color image"></img>
+</p>
+<h3>Conclusion</h3>
+These proof of concept results suggest that it is feasible to automatically detect social media sources with triggering material, informing the creation of tools that can assist clinicians and family members to improve health outcomes.</br>
+							I used the classifier to make a web application that assesses how pro-ana a social media
 							user’s content is. The tool, designed for clinicians, allows them to enter a social media username
 							and then gives an analysis of that user’s online presence, classifying its content. The tool also
 							displays a hashtag similarity map showing trending hashtags closely related to #proana.
 
-						</p>
 
-							<h3>Baseline (Naive) Implementation:</h3>
-							<p>To align the RGB images, I decided to use the Normalized Cross Correlation metric as a baseline, because I noticed that it outperfomed sum of squared differences (SSD) on a small sample of test images.<br>
-
-							My program divides the image into 3 equal parts, aligns the second and the third parts (G and R) to the first (B). 
-							For each image, I record the displacement vector that was used to align the parts. 
-
-							<h3>Sample Single-Scale Processing Results</h3>
-							<table style="width:100%">
-							  <tr>
-							  	<td><h4>NCC final image</h4><img src= "images/cv-18/p1/c_00106v.jpg" alt="color image"></img></td>
-							   <!--  <td><h4>Gradient final image</h4><img src= "images/cv-18/p1/c_00106v.jpg" alt="color image"></img></td> -->
-							    <td><h4>G</h4><img src= "images/cv-18/p1/g_00106v.jpg" alt="green image"></img></td> 
-							    <td><h4>R</h4><img src= "images/cv-18/p1/r_00106v.jpg" alt="red image"></img></td>
-							    <td><h4>B</h4><img src= "images/cv-18/p1/b_00106v.jpg" alt="blue image"></img></td>
-							  </tr>
-							</table>
-
-							<p>
-							However, since exhaustive search becomes expensive if the displacement search range/image resolution are too large, I implemented a second method for the high-res images: a multi-scale aligning algorithm that searches over a user-specified window of displacements. <br>
-							</p>
-
-							<h3>Image Pyramids</h3>
-							<p>
-
-							To handle alignment for larger images, I used image pyramids to implement a faster search algorithm. Given two images, my image pyramid alignment algorithm recursively resizes images by factors of 2 at multiple scales, averages them by taking a uniform average of each, and respectively aligns them from the coarsest scale to the finest scale (largest image).<br></p>
 							
-						 <h3>Image Pyramid Sample Results (from high res. scans)</h3>
-							  <table >
-							  <tr> 
-							   
-							   <td><img src= "images/cv-18/p1/train.jpg" alt="color image"></img></td>
-							   <td><img src= "images/cv-18/p1/01047a.jpg" alt="color image"></img></td>
-							   <td><img src= "images/cv-18/p1/00882a.jpg" alt="color image"></img></td>
-
-							  </tr>
-							</table>
-							<h3>Bells and Whistles: Cropping with Edge Detection</h3>
-							<p>
-
-							Our overall goal is to reduce boundary noise in the dataset; thus, we need to crop the colorful, shifted borders. Hence, I used a combination of edge detection and averages to compute the cropping dimensions for each image. After generating the final color image by the alignment algorithms above, I use the following algorithm to crop the final image based on those computed dimensions. 
-
-							<h3>Cropping Algorithm</h3>
-							<h4><b>Input:</b> channel image I</h4>
-							<ul>
-								<li>Run edge detection on I to create an edge response map </li>
-
-									<li> average the edge response map horizontally to make vector V_h with length = image's height</li>
-										<li> calculate a threshold equal to 2 standard deviations above the mean over all values in V_h</li>
-		 
-										<li> sequentially search the first tenth of values in V from right to left, getting the first value that's higher than the threshold</li>
-
-										<li> sequential search from left to right over the last tenth of V_h </li>
-
-										<li> Save indices as the top and bottom cropping bounds</li>
-
-									<li> Do similar search with V_v, vector generated by vertical average of edge response map to get left and right cropping bounds </li>
-							</ul>
-
-
-							<h3>Cropping and Edge Detection</h3>
-							<table >
-							  <tr>
-							  	<td>Original R<img src= "images/cv-18/p1/g_00907v.jpg" alt="color image" ></img></td>
-							  	<td>Edge Detection Map<img src= "images/cv-18/p1/edge_detect_map.png" alt="edge_detect_map" style="width:99%"></img></td>
-							  	<td>Cropped R<img src= "images/cv-18/p1/g_00907_CROP.jpg" alt="red image" ></img></td>
-							  </tr>
-
-							</table>
-
-							<h3>Sample Cropping Results</h3>
-							<table style="width:100%">
-							  <tr>
-							  	<td><h4>Before</h4><img src= "images/cv-18/p1/c_00757v.jpg" alt="image before crop"></img></td>
-							    <td><h4>After</h4><img src= "images/cv-18/p1/c_00757v_CROP.jpg" alt="color image"></img></td>
-							 
-							</tr>							  
-							<tr>
-							  	<td><h4>Before</h4><img src= "images/cv-18/p1/c_00888v.jpg" alt="image before crop"></img></td>
-							  	<td><h4>After</h4><img src= "images/cv-18/p1/c_00888v_CROP.jpg" alt="red image"></img></td>
-							  </tr>
-							  </table>
-
-							 <h2>(More) Sample Results</h2>
-							<table style="width:100%">
-							<tr>
-							  	<td><img src= "images/cv-18/p1/c_00889v_CROP.jpg" alt="red image"></img></td>
-							  	<td><img src= "images/cv-18/p1/c_00911v_CROP.jpg" alt="red image"></img></td>
-							  
-
-							  </tr>
-							  <tr>
-							  	<td><img src= "images/cv-18/p1/c_00907v_CROP.jpg" alt="blue image"></img></td>
-							  	<td><img src= "images/cv-18/p1/c_01031v_CROP.jpg" alt="red image"></img></td>
-
-							  </tr>
-							  </table>
-
-
+							
+						 
 			    </section>
 			</div>
 <!-- Footer -->
@@ -164,7 +160,7 @@
 						<li><a href="mailto:samsaranc@gmail.com" class="icon fa-envelope-o"><span class="label">Email</span></a></li>
 					</ul>
 					<ul class="copyright">
-						<li>Last updated: September 2017</li>
+						<li>Last updated: May 2018</li>
 						<li>Design: <a href="http://html5up.net">HTML5 UP</a></li>
 						<li>Background: <a href="https://www.lansbergen.net/wp/solargraphy/">Jan Koeman Kloetinge</a> </li>
 					</ul>
